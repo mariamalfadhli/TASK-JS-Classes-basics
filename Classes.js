@@ -20,9 +20,36 @@
  * print out the sum of their ages using calculateAge() method
  */
 class Person {
-  // continue the code here
+  constructor(firstName, lastName, gender, birthYear) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.gender = gender;
+    this.birthYear = birthYear;
+  }
+  printName() {
+    console.log(`${this.firstName} ${this.lastName}`);
+  }
+  calculateAge(currentYear) {
+    return currentYear - this.birthYear;
+  }
 }
 
+const person1 = new Person("Maryam", "Alfadhli", "Female", "1998");
+person1.printName();
+console.log(person1.calculateAge(2023));
+
+const person2 = new Person("Nansy", "Alsharkawi", "Female", "1994");
+person2.printName();
+console.log(person2.calculateAge(2023));
+
+const person3 = new Person("Yousef", "Alkandari", "Male", "1990");
+person3.printName();
+console.log(person3.calculateAge(2023));
+const sum =
+  person1.calculateAge(2023) +
+  person2.calculateAge(2023) +
+  person3.calculateAge(2023);
+console.log(`the sum of all ages= ${sum}`);
 /** (Question 2): (15000 Points)
  * 1. Write a class `Movie`, give it the following properties
  * - title
@@ -45,8 +72,26 @@ class Person {
  */
 
 class Movie {
-  // continue the code here
+  rating = [];
+  constructor(title, duration, genre) {
+    this.title = title;
+    this.duration = duration;
+    this.genre = genre;
+  }
+  rate(rating) {
+    if (rating >= 0 || rating <= 10) this.rating.push(rating);
+  }
+  averageRating(rating) {
+    const sum = rating.reduce((a, b) => a + b);
+    return sum / rating.length;
+  }
 }
+const movie1 = new Movie("Escape Plan", "170", "Action");
+movie1.rate(10);
+movie1.rate(9);
+movie1.rate(8);
+console.log(movie1.averageRating(movie1.rating));
+console.log(movie1);
 
 /** (Question 3): (1000 Points)
  * 1. Create a class `Actor` that inherits `Person`, and adds the following properties
@@ -57,4 +102,17 @@ class Movie {
  * +
  */
 
-// write the class here
+class Actor extends Person {
+  movies = [];
+  constructor(firstName, lastName, gender, birthYear) {
+    super(firstName, lastName, gender, birthYear);
+  }
+  addMovie(movie) {
+    this.movies.push(movie);
+  }
+}
+
+const actor1 = new Actor("Tom", "Cruise", "Male", "1962");
+actor1.addMovie("Top Gun");
+actor1.addMovie("Mission Impossible");
+console.log(actor1);

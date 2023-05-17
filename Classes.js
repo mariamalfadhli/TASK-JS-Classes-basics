@@ -79,7 +79,7 @@ class Movie {
     this.genre = genre;
   }
   rate(rating) {
-    if (rating >= 0 || rating <= 10) this.rating.push(rating);
+    if (rating >= 0 && rating <= 10) this.rating.push(rating);
   }
   averageRating(rating) {
     const sum = rating.reduce((a, b) => a + b);
